@@ -1,0 +1,46 @@
+{
+	"schemaVersion": 1,
+	"id": "things-around",
+	"version": "${version}",
+	"name": "Things Around",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/things-around/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"projects.mods.ta.ThingsAround",
+			"projects.mods.ta.base.status_effects.ModStatusEffects",
+			"projects.mods.ta.event.EventInit",
+			"projects.mods.ta.item.ModItems"
+		],
+		"client": [
+			"projects.mods.ta.ThingsAroundClient",
+			"projects.mods.ta.misc.KeyBindEntrypoint"
+		]
+	},
+	"mixins": [
+		"things-around.mixins.json",
+		{
+			"config": "things-around.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+
+}

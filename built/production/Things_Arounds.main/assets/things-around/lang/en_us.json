@@ -1,0 +1,11 @@
+{
+
+  "itemGroup.things-around": "Things Around",
+
+  "effect.things-around.forest_around": "Forest",
+
+  "biome_event.things-around.forest.healing_arrow": "Healing Arrow",
+  "biome_event.things-around.forest.harvest": "Forest Harvest",
+  "biome_event.things-around.forest.rainy_day": "Rainy Day",
+  "biome_event.things-around.forest.tough_bark": "Tough Bark"
+}

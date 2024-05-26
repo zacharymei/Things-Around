@@ -1,0 +1,8 @@
+{
+  "effect.things-around.forest_around": "森林",
+
+  "biome_event.things-around.forest.healing_arrow": "治愈之箭",
+  "biome_event.things-around.forest.harvest": "丰收木林",
+  "biome_event.things-around.forest.rainy_day": "下雨天",
+  "biome_event.things-around.forest.tough_bark": "坚硬树皮"
+}
