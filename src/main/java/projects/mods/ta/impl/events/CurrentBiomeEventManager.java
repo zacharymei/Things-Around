@@ -2,17 +2,15 @@ package projects.mods.ta.impl.events;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 
 import projects.mods.ta.impl.AroundsType;
 import projects.mods.ta.impl.events.biome.BiomeEvent;
+import projects.mods.ta.impl.events.biome.BiomeEventImpl;
 import projects.mods.ta.impl.events.biome.BiomeEventInstance;
 import projects.mods.ta.network.BiomeEventsNetwork;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -52,8 +50,7 @@ public class CurrentBiomeEventManager {
             if(isHappening(event)) return false;
 
             if(getOrCreateList(event.getType()).size() == max_events_number) return false;
-
-            BiomeEventInstance event_instance = event.createEvent(world).setEventActive(true);
+            BiomeEventInstance event_instance = ((BiomeEvent) event).createEvent(world).setEventActive(true);
             boolean bl = getOrCreateList(event.getType()).add(event_instance);
             if(bl) notifyChange(event.getType(), getOrCreateList(event.getType()));
             return bl;

@@ -2,13 +2,11 @@ package projects.mods.ta.network;
 
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import projects.mods.ta.impl.AroundsType;
-import projects.mods.ta.impl.events.biome.BiomeEvent;
 import projects.mods.ta.impl.events.biome.BiomeEventInstance;
 
 import java.util.List;

@@ -25,6 +25,12 @@ public class BlockPlaceUtil {
         }
     }
 
+    public static void replaceAll(World world, Map<BlockPos, BlockState> map, Block replace){
+        for(Map.Entry<BlockPos, BlockState> e: map.entrySet()){
+            world.setBlockState(e.getKey(), replace.getDefaultState());
+        }
+    }
+
     public static boolean placeSafe(World world, BlockPos pos, BlockState blockState){
         if(world.getOtherEntities(null, Box.enclosing(pos, pos.up()), (e)->e instanceof LivingEntity).isEmpty()){
             world.setBlockState(pos, blockState);

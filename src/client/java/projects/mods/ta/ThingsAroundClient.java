@@ -1,11 +1,13 @@
 package projects.mods.ta;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import projects.mods.ta.event.ItemStackGetTooltipEvents;
 import projects.mods.ta.hud.ArrowBowHud;
 import projects.mods.ta.hud.BiomeEventsHUD;
 import projects.mods.ta.network.ModNetworks;
+import projects.mods.ta.render.ModColorProvider;
 
 public class ThingsAroundClient implements ClientModInitializer {
 	@Override
@@ -15,5 +17,8 @@ public class ThingsAroundClient implements ClientModInitializer {
 		HudRenderCallback.EVENT.register(new ArrowBowHud());
 		HudRenderCallback.EVENT.register(new BiomeEventsHUD());
 		ModNetworks.init();
+
+		ModColorProvider.register();
+
 	}
 }

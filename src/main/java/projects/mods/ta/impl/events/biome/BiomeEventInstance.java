@@ -17,6 +17,10 @@ public class BiomeEventInstance {
     public static final String KEY_DURATION = "duration_sec";
     public static final String KEY_CREATED_TIME = "created_world_time";
 
+    public BiomeEventInstance(BiomeEvent biome_event, long created_world_time){
+        this(biome_event, biome_event.getDuration(), created_world_time);
+    }
+
     public BiomeEventInstance(BiomeEvent biome_event, int duration_sec, long created_world_time) {
         if(duration_sec == 0) throw new IllegalArgumentException("Cannot create event with zero duration. ");
         this.duration_sec = duration_sec;

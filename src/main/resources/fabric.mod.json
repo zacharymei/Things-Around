@@ -18,8 +18,7 @@
 		"main": [
 			"projects.mods.ta.ThingsAround",
 			"projects.mods.ta.base.status_effects.ModStatusEffects",
-			"projects.mods.ta.event.EventInit",
-			"projects.mods.ta.item.ModItems"
+			"projects.mods.ta.event.EventInit"
 		],
 		"client": [
 			"projects.mods.ta.ThingsAroundClient",

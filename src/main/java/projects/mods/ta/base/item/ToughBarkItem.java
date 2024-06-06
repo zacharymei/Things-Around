@@ -1,4 +1,4 @@
-package projects.mods.ta.item;
+package projects.mods.ta.base.item;
 
 import net.minecraft.item.Item;
 

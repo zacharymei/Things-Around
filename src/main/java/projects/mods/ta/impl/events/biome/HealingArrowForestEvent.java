@@ -1,6 +1,5 @@
 package projects.mods.ta.impl.events.biome;
 
-import com.google.common.collect.Maps;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -15,13 +14,11 @@ import projects.mods.ta.event.LivingEntityCallback;
 import projects.mods.ta.impl.EntityDataTracker;
 import projects.mods.ta.impl.EntityTrackedData;
 
-import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 
-
-public class HealingArrowForestEvent extends ForestEvent implements
+public class HealingArrowForestEvent extends BiomeEventImpl
+        implements ForestEvent,
         ArrowEntityCallback.EntityHit,
         LivingEntityCallback.BeforeApplyDamage{
 
@@ -29,18 +26,14 @@ public class HealingArrowForestEvent extends ForestEvent implements
     private static final EntityDataTracker entityDataTracker = EntityDataTracker.tracker();
 
     HealingArrowForestEvent(){
+        init();
+    }
+
+    @Override
+    protected void init() {
         ArrowEntityCallback.ENTITY_HIT_EVENT.register(this);
         LivingEntityCallback.BEFORE_APPLY_DAMAGE.register(this);
     }
-
-
-
-    @Override
-    public <E extends BiomeEvent> boolean is(E biome_event) {
-        return biome_event instanceof HealingArrowForestEvent;
-    }
-
-
 
     @Override
     public void onHit(LivingEntity entity) {

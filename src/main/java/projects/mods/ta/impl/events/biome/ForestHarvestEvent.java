@@ -1,6 +1,5 @@
 package projects.mods.ta.impl.events.biome;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
@@ -30,8 +29,9 @@ import projects.mods.ta.util.TreesHelper;
 
 import java.util.*;
 
-public class ForestHarvestEvent extends ForestEvent
-        implements ServerLivingEntityEvents.AfterDeath, CropCallback.CropRandomTick, PlayerTickCallback.TickMovement {
+public class ForestHarvestEvent extends BiomeEventImpl
+        implements ForestEvent, ServerLivingEntityEvents.AfterDeath, CropCallback.CropRandomTick, PlayerTickCallback.TickMovement {
+
 
     protected int preset_duration = 30;
 
@@ -55,6 +55,11 @@ public class ForestHarvestEvent extends ForestEvent
     private final BlockPlaceEntry PLACE_BEE_HIVES = new BlockPlaceEntry(World.OVERWORLD, List.of(Blocks.BEE_NEST), List.of(Blocks.AIR));
 
     ForestHarvestEvent(){
+        init();
+    }
+
+    @Override
+    protected void init(){
         ServerLivingEntityEvents.AFTER_DEATH.register(this);
         CropCallback.CROP_RANDOM_TICK.register(this);
         PlayerTickCallback.TICK_MOVEMENT.register(this);

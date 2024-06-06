@@ -9,6 +9,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.Identifier;
 import projects.mods.ta.impl.AroundsType;
 import projects.mods.ta.impl.events.biome.BiomeEvent;
+import projects.mods.ta.impl.events.biome.BiomeEventImpl;
 import projects.mods.ta.impl.events.biome.BiomeEvents;
 
 import java.util.Map;

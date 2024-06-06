@@ -4,21 +4,17 @@ import com.mojang.brigadier.CommandDispatcher;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
-import net.minecraft.command.argument.EnumArgumentType;
 import net.minecraft.command.argument.IdentifierArgumentType;
-import net.minecraft.command.suggestion.SuggestionProviders;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
-import projects.mods.ta.impl.AroundsType;
 import projects.mods.ta.impl.events.CurrentBiomeEventManager;
 import projects.mods.ta.impl.events.biome.BiomeEvent;
+import projects.mods.ta.impl.events.biome.BiomeEventImpl;
 import projects.mods.ta.impl.events.biome.BiomeEvents;
 
 public class BiomeEventCommand {

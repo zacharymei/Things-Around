@@ -2,7 +2,6 @@ package projects.mods.ta.impl.events.biome;
 
 import net.fabricmc.yarn.constants.MiningLevels;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
@@ -14,21 +13,26 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import projects.mods.ta.event.BlockStripCallback;
 import projects.mods.ta.event.PlayerEntityCallback;
-import projects.mods.ta.item.ModItems;
+import projects.mods.ta.base.item.ModItems;
 import projects.mods.ta.util.tags.CustomBlockTags;
 
 import java.util.Optional;
 import java.util.Random;
 
-public class ToughBarkForestEvent extends ForestEvent
-        implements PlayerEntityCallback.BlockBreakingSpeed,
+public class ToughBarkForestEvent extends BiomeEventImpl
+        implements ForestEvent, PlayerEntityCallback.BlockBreakingSpeed,
                     BlockStripCallback {
 
+
     ToughBarkForestEvent(){
+        init();
+    }
+
+    @Override
+    protected void init() {
         PlayerEntityCallback.BLOCK_BREAKING_SPEED.register(this);
         BlockStripCallback.STRIP.register(this);
     }
-
 
     @Override
     public float getBlockBreakingSpeed(PlayerEntity player, BlockState block, float original) {

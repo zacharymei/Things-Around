@@ -7,18 +7,12 @@ import net.minecraft.world.biome.Biome;
 import projects.mods.ta.impl.AroundsType;
 import projects.mods.ta.util.tags.CustomBiomeTags;
 
-public abstract class ForestEvent extends BiomeEvent {
+public interface ForestEvent extends BiomeEvent{
 
-    final AroundsType type = AroundsType.FOREST;
+    AroundsType event_type = AroundsType.FOREST;
 
     @Override
-    public AroundsType getType(){
-        return this.type;
+    default AroundsType getType() {
+        return event_type;
     }
-
-    public boolean isInBiome(RegistryEntry<Biome> biome){
-        return biome.isIn(CustomBiomeTags.IS_FOREST_AROUND);
-    }
-
-
 }

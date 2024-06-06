@@ -1,0 +1,6 @@
+{
+  "parent": "block/leaves",
+  "textures": {
+    "all": "things-around:block/luck_leaves"
+  }
+}
