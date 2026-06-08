@@ -37,7 +37,7 @@ public class ThingsAround implements ModInitializer {
 		ItemComponentTooltipProviderRegistry.addAfter(DataComponents.ENCHANTMENTS, ModComponents.ENCHANTS_DURATION);
 		ItemComponentTooltipProviderRegistry.addAfter(DataComponents.ENCHANTMENTS, ModComponents.ENCHANTMENTS_DURATIONS);
 
-		ServerLevelEvent.AFTER_ENTITY_MANAGER_TICK.register(ServerBiomeEventManager.updater);
+		ServerBiomeEventManager.init();
 
 		LOGGER.info("Hello Fabric world!");
 	}

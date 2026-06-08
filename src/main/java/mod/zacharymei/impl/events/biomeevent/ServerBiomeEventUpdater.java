@@ -8,10 +8,18 @@ import net.minecraft.server.level.ServerLevel;
 import java.awt.*;
 
 public class ServerBiomeEventUpdater implements ServerLevelEvent.ServerModTick {
+
+    public ServerBiomeEventUpdater() {
+        ServerLevelEvent.AFTER_ENTITY_MANAGER_TICK.register(this);
+    }
+
+
     @Override
     public void tickLevel(ServerLevel level) {
         ObjectOpenHashSet<BiomeEvent> timeoutBiomeEventsSet = ServerBiomeEventManager.tick(level.dimension());
-        timeoutBiomeEventsSet.forEach(e->sendUpdate(level, e, 0));
+        timeoutBiomeEventsSet.forEach(e->{
+            sendUpdate(level, e, 0);
+        });
         int duration = ServerBiomeEventManager.getDurations(level.dimension(), ModBiomeEvents.RainyDayEvent.getBiomeEvent()); // TEST
         if(duration > 0 && duration%20 == 0) level.getPlayers(p->true).forEach(p->p.sendSystemMessage(Component.literal(String.valueOf(duration/20))));
 

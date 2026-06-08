@@ -5,14 +5,18 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 
-import java.util.List;
 import java.util.Map;
 
 public class ServerBiomeEventManager {
 
     public static final ServerBiomeEventUpdater updater = new ServerBiomeEventUpdater();
+    public static final ServerBiomeEventData data = new ServerBiomeEventData();
 
     private static final Map<ResourceKey<Level>, ObjectOpenHashSet<BiomeEventInstance>> levelsBiomeEvents = new Object2ObjectOpenHashMap<>();
+
+    public static void init(){
+
+    }
 
     public static void start(ResourceKey<Level> level, BiomeEvent biomeEvent){
         start(level, biomeEvent, BiomeEvent.DEFAULT_DURATION);
@@ -39,6 +43,11 @@ public class ServerBiomeEventManager {
         levelsBiomeEvents.put(level, biomeEventsSet);
     }
 
+    protected static void clean(){
+        // TODO throw exceptions for levels not being saved
+        levelsBiomeEvents.clear();
+    }
+
     public static ObjectOpenHashSet<BiomeEvent> tick(ResourceKey<Level> level){
         if(!levelsBiomeEvents.containsKey(level)) return new ObjectOpenHashSet<>();
         ObjectOpenHashSet<BiomeEventInstance> biomeEventsSet = levelsBiomeEvents.getOrDefault(level, new ObjectOpenHashSet<>());
@@ -48,7 +57,10 @@ public class ServerBiomeEventManager {
                 .collect(ObjectOpenHashSet::new, ObjectOpenHashSet::add, ObjectOpenHashSet::addAll);
         biomeEventsSet.removeIf(i->i.getDurations() <= 1);
         biomeEventsSet.forEach(BiomeEventInstance::tick);
-        timeoutEventsSet.forEach(i->boardcast(level, i, 0));
+        timeoutEventsSet.forEach(e->{
+            boardcast(level, e, 0);
+            e.endInstance();
+        });
         return timeoutEventsSet;
     }
 
@@ -61,6 +73,10 @@ public class ServerBiomeEventManager {
                 .filter(i->i.getBiomeEvent()==biomeEvent)
                 .mapToInt(BiomeEventInstance::getDurations)
                 .sum();
+    }
+
+    public static ObjectOpenHashSet<BiomeEventInstance> getActiveBiomeEvents(ResourceKey<Level> level){
+        return levelsBiomeEvents.getOrDefault(level, new ObjectOpenHashSet<>());
     }
 
 }
