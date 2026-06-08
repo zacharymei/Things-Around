@@ -5,6 +5,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
+import mod.zacharymei.impl.events.biomeevent.ModBiomeEvents;
 import net.minecraft.commands.CommandSourceStack;
 
 import java.util.concurrent.CompletableFuture;
@@ -15,7 +16,7 @@ public class ModCommandSuggestions {
 
         @Override
         public CompletableFuture<Suggestions> getSuggestions(CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) throws CommandSyntaxException {
-            return null;
+            return builder.suggest("start").suggest("end").buildFuture();
         }
     }
 
@@ -24,7 +25,7 @@ public class ModCommandSuggestions {
 
         @Override
         public CompletableFuture<Suggestions> getSuggestions(CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) throws CommandSyntaxException {
-            return null;
+            return builder.suggest("test").buildFuture();
         }
     }
 
@@ -32,7 +33,10 @@ public class ModCommandSuggestions {
 
         @Override
         public CompletableFuture<Suggestions> getSuggestions(CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) throws CommandSyntaxException {
-            return null;
+            for(ModBiomeEvents biomeEvent : ModBiomeEvents.values()) {
+                builder.suggest(biomeEvent.name());
+            }
+            return builder.buildFuture();
         }
     }
 

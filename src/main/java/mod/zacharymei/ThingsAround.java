@@ -5,6 +5,8 @@ import mod.zacharymei.base.component.ModComponents;
 import mod.zacharymei.base.item.ModItems;
 import mod.zacharymei.command.ModCommands;
 import mod.zacharymei.event.ModEvents;
+import mod.zacharymei.event.ServerLevelEvent;
+import mod.zacharymei.impl.events.biomeevent.ServerBiomeEventManager;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.item.v1.ItemComponentTooltipProviderRegistry;
@@ -34,6 +36,8 @@ public class ThingsAround implements ModInitializer {
 
 		ItemComponentTooltipProviderRegistry.addAfter(DataComponents.ENCHANTMENTS, ModComponents.ENCHANTS_DURATION);
 		ItemComponentTooltipProviderRegistry.addAfter(DataComponents.ENCHANTMENTS, ModComponents.ENCHANTMENTS_DURATIONS);
+
+		ServerLevelEvent.AFTER_ENTITY_MANAGER_TICK.register(ServerBiomeEventManager.updater);
 
 		LOGGER.info("Hello Fabric world!");
 	}
